@@ -1,12 +1,17 @@
 import { activityFeed, traderProfiles } from "@/data/mock";
 import TraderCard from "@/components/TraderCard";
 import ActivityCard from "@/components/ActivityCard";
-import { getSignalStatus } from "@/lib/signal";
+import LiveMarketCard from "@/components/LiveMarketCard";
+import { getSignalInsight } from "@/lib/signal";
+import { fetchLiveMarkets } from "@/lib/polymarket";
 
-export default function Home() {
+export default async function Home() {
   const totalTraders = traderProfiles.length;
   const totalEvents = activityFeed.length;
   const totalMarkets = new Set(activityFeed.map((item) => item.marketQuestion)).size;
+
+  const liveMarkets = await fetchLiveMarkets(6);
+
   return (
     <main className="min-h-screen bg-neutral-950 text-neutral-100">
       <div className="mx-auto max-w-7xl px-6 py-10">
@@ -21,6 +26,28 @@ export default function Home() {
             Track selected traders, interpret their actions, and understand whether a signal is early, mid, or late.
           </p>
         </header>
+
+        <section className="mb-10">
+          <div className="mb-4 flex items-center justify-between">
+            <h2 className="text-2xl font-semibold">Live Markets</h2>
+            <span className="text-sm text-neutral-500">
+              {liveMarkets.length} live markets
+            </span>
+          </div>
+
+          {liveMarkets.length > 0 ? (
+            <div className="grid gap-4">
+              {liveMarkets.map((market) => (
+                <LiveMarketCard key={market.id} market={market} />
+              ))}
+            </div>
+          ) : (
+            <div className="rounded-2xl border border-neutral-800 bg-neutral-900 p-5 text-sm text-neutral-400">
+              Live market data is temporarily unavailable in the current network
+              environment.
+            </div>
+          )}
+        </section>
 
         <section className="mb-10 grid gap-4 md:grid-cols-3">
           <article className="rounded-2xl border border-neutral-800 bg-neutral-900 p-5">
@@ -72,15 +99,20 @@ export default function Home() {
           </div>
 
           <div className="space-y-4">
-          {activityFeed.map((item) => (
-            <ActivityCard
-              key={item.id}
-              item={{
-                ...item,
-                signalStatus: getSignalStatus(item),
-              }}
-            />
-          ))}
+          {activityFeed.map((item) => {
+            const insight = getSignalInsight(item, activityFeed);
+
+            return (
+              <ActivityCard
+                key={item.id}
+                item={{
+                  ...item,
+                  signalStatus: insight.status,
+                }}
+                reason={insight.reason}
+              />
+            );
+          })}
           </div>
         </section>
       </div>

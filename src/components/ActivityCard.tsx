@@ -1,8 +1,9 @@
 import type { ActivityItem } from "@/types";
 
 type Props = {
-  item: ActivityItem;
-};
+    item: ActivityItem;
+    reason: string;
+  };
 
 function getSignalStatusClasses(status: ActivityItem["signalStatus"]) {
   switch (status) {
@@ -17,7 +18,7 @@ function getSignalStatusClasses(status: ActivityItem["signalStatus"]) {
   }
 }
 
-export default function ActivityCard({ item }: Props) {
+export default function ActivityCard({ item, reason }: Props) {
   return (
     <article className="rounded-2xl border border-neutral-800 bg-neutral-900 p-5">
       <div className="mb-3 flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
@@ -54,7 +55,13 @@ export default function ActivityCard({ item }: Props) {
         </span>
       </div>
 
-      <p className="text-sm leading-6 text-neutral-400">{item.summary}</p>
+      <p className="text-sm leading-6 text-neutral-400">
+        {item.summary}
+        </p>
+
+        <p className="mt-2 text-xs text-neutral-500">
+        Signal insight: {reason}
+        </p>
     </article>
   );
 }

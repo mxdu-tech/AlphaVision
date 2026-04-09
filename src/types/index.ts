@@ -23,3 +23,16 @@ export type TraderProfile = {
   avgHoldTime: string;
   note: string;
 };
+
+export type LiveMarket = {
+    id: string;
+    question: string;
+    slug?: string;
+    outcomes: string[];
+    outcomePrices: string[];
+    volume?: number;
+    liquidity?: number;
+    endDate?: string;
+    active?: boolean;
+    closed?: boolean;
+};
