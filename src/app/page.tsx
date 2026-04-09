@@ -3,6 +3,9 @@ import TraderCard from "@/components/TraderCard";
 import ActivityCard from "@/components/ActivityCard";
 
 export default function Home() {
+  const totalTraders = traderProfiles.length;
+  const totalEvents = activityFeed.length;
+  const totalMarkets = new Set(activityFeed.map((item) => item.marketQuestion)).size;
   return (
     <main className="min-h-screen bg-neutral-950 text-neutral-100">
       <div className="mx-auto max-w-7xl px-6 py-10">
@@ -18,6 +21,32 @@ export default function Home() {
             market actions into readable signals.
           </p>
         </header>
+
+        <section className="mb-10 grid gap-4 md:grid-cols-3">
+          <article className="rounded-2xl border border-neutral-800 bg-neutral-900 p-5">
+            <p className="text-sm text-neutral-500">Tracked Traders</p>
+            <p className="mt-2 text-3xl font-semibold">{totalTraders}</p>
+            <p className="mt-2 text-sm text-neutral-400">
+              Selected profiles under active observation.
+            </p>
+          </article>
+
+          <article className="rounded-2xl border border-neutral-800 bg-neutral-900 p-5">
+            <p className="text-sm text-neutral-500">Recent Events</p>
+            <p className="mt-2 text-3xl font-semibold">{totalEvents}</p>
+            <p className="mt-2 text-sm text-neutral-400">
+              Mock smart-money actions currently displayed.
+            </p>
+          </article>
+
+          <article className="rounded-2xl border border-neutral-800 bg-neutral-900 p-5">
+            <p className="text-sm text-neutral-500">Markets Covered</p>
+            <p className="mt-2 text-3xl font-semibold">{totalMarkets}</p>
+            <p className="mt-2 text-sm text-neutral-400">
+              Unique market questions represented in the feed.
+            </p>
+          </article>
+        </section>
 
         <section className="mb-10">
           <div className="mb-4 flex items-center justify-between">
