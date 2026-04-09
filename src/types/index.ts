@@ -9,6 +9,7 @@ export type ActivityItem = {
     amount: number;
     timestamp: string;
     summary: string;
+    signalStatus: "EARLY" | "MID" | "LATE";
   };
   
   export type TraderProfile = {

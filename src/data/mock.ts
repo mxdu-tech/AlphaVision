@@ -42,6 +42,7 @@ export const activityFeed: ActivityItem[] = [
     amount: 1200,
     timestamp: "2026-04-09 13:10",
     summary: "Early positioning before a possible volatility expansion.",
+    signalStatus: "EARLY",
   },
   {
     id: "a2",
@@ -54,6 +55,7 @@ export const activityFeed: ActivityItem[] = [
     amount: 860,
     timestamp: "2026-04-09 12:48",
     summary: "Looks like a short-term relative strength bet against ETH.",
+    signalStatus: "MID",
   },
   {
     id: "a3",
@@ -66,6 +68,7 @@ export const activityFeed: ActivityItem[] = [
     amount: 1500,
     timestamp: "2026-04-09 11:30",
     summary: "Conviction entry in a slower-moving macro market.",
+    signalStatus: "EARLY",
   },
   {
     id: "a4",
@@ -78,6 +81,7 @@ export const activityFeed: ActivityItem[] = [
     amount: 500,
     timestamp: "2026-04-09 11:12",
     summary: "Partial profit-taking after a quick move upward.",
+    signalStatus: "LATE",
   },
   {
     id: "a5",
@@ -90,6 +94,7 @@ export const activityFeed: ActivityItem[] = [
     amount: 700,
     timestamp: "2026-04-09 10:55",
     summary: "A lower-priced momentum entry with room for repricing.",
+    signalStatus: "EARLY",
   },
   {
     id: "a6",
@@ -102,6 +107,7 @@ export const activityFeed: ActivityItem[] = [
     amount: 2100,
     timestamp: "2026-04-09 09:40",
     summary: "Narrative-driven positioning in a highly liquid event market.",
+    signalStatus: "MID",
   },
   {
     id: "a7",
@@ -114,6 +120,7 @@ export const activityFeed: ActivityItem[] = [
     amount: 980,
     timestamp: "2026-04-09 09:05",
     summary: "Possible anticipation of a sentiment shift around ETF demand.",
+    signalStatus: "EARLY",
   },
   {
     id: "a8",
@@ -126,5 +133,6 @@ export const activityFeed: ActivityItem[] = [
     amount: 640,
     timestamp: "2026-04-09 08:32",
     summary: "Contrarian short-term positioning against recent upside momentum.",
+    signalStatus: "MID",
   },
 ];
